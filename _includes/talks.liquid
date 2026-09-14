@@ -1,0 +1,23 @@
+<div class="talks">
+  {% if site.data.talks != blank %}
+    {% assign talks = site.data.talks | sort: 'date' | reverse %}
+    <div class="table-responsive">
+      <table class="table table-sm table-borderless">
+        <tbody>
+          {% for talk in talks %}
+            <tr>
+              <th scope="row" style="width: 20%">{{ talk.date | date: '%b %Y' }}</th>
+              <td>
+                <span class="talk-venue font-weight-bold">{{ talk.venue }}</span>&nbsp;&mdash;&nbsp;{{ talk.title }}
+                {% if talk.note %}<span class="talk-note text-muted">({{ talk.note }})</span>{% endif %}
+                {% if talk.link %}[<a href="{{ talk.link }}" target="_blank" rel="noopener noreferrer">{{ talk.link_text | default: 'link' }}</a>]{% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>No talks so far...</p>
+  {% endif %}
+</div>

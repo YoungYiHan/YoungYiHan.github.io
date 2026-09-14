@@ -1,0 +1,30 @@
+# Invited talks and workshop presentations.
+# Rendered on the homepage via _includes/talks.liquid, sorted by date (most recent first).
+# Each entry: date (YYYY-MM-DD), venue, title, and optional link/link_text.
+
+- date: 2026-07-20
+  venue: CMU RCHI Lab
+  title: "Building Scalable Inference-Time Policy Steering with World Modeling"
+
+- date: 2026-07-13
+  venue: UC Berkeley ICON Lab
+  title: "Building Scalable Inference-Time Policy Steering with World Modeling and Verification"
+
+- date: 2026-06-10
+  venue: CVPR 2026 H2R Workshop
+  title: "Inference-Time Policy Steering via Uncertainty (UPS) and Vision-and-Touch (ViTaL)"
+  note: Spotlight talk
+
+- date: 2025-11-14
+  venue: Duke DexLab
+  title: "Language-Guided Runtime Steering with Robot Foundation Models"
+  link: https://www.youtube.com/watch?v=sBBRs2N-qiw
+  link_text: recording
+
+- date: 2025-10-15
+  venue: UT Austin Robin Lab
+  title: "Language-Guided Runtime Steering with Robot Foundation Models"
+
+- date: 2025-07-01
+  venue: Meta FAIR Robotics Team
+  title: "FOREWARN: VLM-in-the-loop Policy Steering via Latent Alignment"

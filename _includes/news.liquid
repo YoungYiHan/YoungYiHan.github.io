@@ -1,0 +1,77 @@
+<div class="news">
+  {% if site.news != blank %}
+    {% assign news_size = site.news | size %}
+    <div
+      class="table-responsive"
+      {% if include.limit and site.announcements.scrollable and news_size > 3 %}
+        style="max-height: 60vw"
+      {% endif %}
+    >
+      <table class="table table-sm table-borderless">
+        {% assign news = site.news | reverse %}
+        {% if include.limit and site.announcements.limit %}
+          {% assign news_limit = site.announcements.limit %}
+        {% else %}
+          {% assign news_limit = news_size %}
+        {% endif %}
+        {%- comment -%} Number of items shown before the collapse toggle {%- endcomment -%}
+        {% assign visible_count = site.announcements.collapse_after | default: 4 %}
+        <tbody>
+          {% for item in news limit: news_limit %}
+            <tr
+              {% if include.limit and forloop.index > visible_count %}
+                class="news-collapsible news-hidden"
+              {% endif %}
+            >
+              <th scope="row" style="width: 20%">{{ item.date | date: '%b %Y' }}</th>
+              <td>
+                {% if item.inline %}
+                  {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+                {% else %}
+                  <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% if include.limit and news_limit > visible_count %}
+      <button
+        class="btn btn-sm btn-outline-primary news-toggle"
+        type="button"
+        data-text-collapsed="Show more news"
+        data-text-expanded="Show less"
+      >
+        Show more news
+      </button>
+    {% endif %}
+  {% else %}
+    <p>No news so far...</p>
+  {% endif %}
+</div>
+
+<style>
+  .news-hidden {
+    display: none;
+  }
+  .news-toggle {
+    margin-top: 0.5rem;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".news-toggle").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const rows = document.querySelectorAll(".news-collapsible");
+        const expand = btn.getAttribute("data-expanded") !== "true";
+        rows.forEach(function (row) {
+          row.classList.toggle("news-hidden", !expand);
+        });
+        btn.setAttribute("data-expanded", expand ? "true" : "false");
+        btn.textContent = expand ? btn.dataset.textExpanded : btn.dataset.textCollapsed;
+      });
+    });
+  });
+</script>
