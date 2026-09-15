@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Awarded the National Scholarship (top honor for undergraduates in China). 🎉
+Awarded the National Scholarship (Top Honor for Undergraduates in China). 🎉
